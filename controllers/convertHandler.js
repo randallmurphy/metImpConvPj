@@ -20,7 +20,7 @@ const units = {
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    return (input.search(/[a-zA-Z]/) === 0 ? 1 : Number.parseFloat(math.eval(input.substring(0, input.search(/[a-zA-Z]/)))));
+    return (input.search(/[a-zA-Z]/) === 0 ? 1 : Number.parseFloat(math.evaluate(input.substring(0, input.search(/[a-zA-Z]/)))));
   };
   
   this.getUnit = function(input) {
