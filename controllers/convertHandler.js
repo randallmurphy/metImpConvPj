@@ -2,14 +2,12 @@
 *
 *
 *       Complete the handler logic below
-*       
-*       
+*
+*
 */
 
-const math = require('mathjs');
-
 const units = {
-  gal: ['gallons', 'l', 3.785411784],
+  gal: ['gallons', 'L', 3.785411784],
   l: ['liters', 'gal', 0.26417205235815],
   lbs: ['pounds', 'kg', 0.45359237],
   kg: ['kilograms', 'lbs', 2.2046226218],
@@ -17,17 +15,22 @@ const units = {
   km: ['kilometers', 'mi', 0.6213711922]
 };
 
+function FractionStrToDecimal(str) {
+  // Keeps only numbers, removes repeated slash (/) characters, and converts fraction to decimal
+  return Number.parseFloat(str.replace(/[^\d\.\/]/gim, '').replace(/(\/)(?=.*\1)/g, '').split('/').reduce((p, c) => p / c));
+}
+
 function ConvertHandler() {
-  
+
   this.getNum = function(input) {
-    return (input.search(/[a-zA-Z]/) === 0 ? 1 : Number.parseFloat(math.evaluate(input.substring(0, input.search(/[a-zA-Z]/)))));
+    return (input.search(/[a-zA-Z]/) === 0 ? 1 : FractionStrToDecimal(input));
   };
-  
+
   this.getUnit = function(input) {
     var unit = input.substring(input.search(/[a-zA-Z]/)).toLowerCase();
     return (units[unit] !== undefined ? unit : undefined);
   };
-  
+
   this.getReturnUnit = function(initUnit) {
     initUnit = initUnit.toLowerCase();
     return units[initUnit][1];
@@ -37,19 +40,19 @@ function ConvertHandler() {
     unit = unit.toLowerCase();
     return units[unit][0];
   };
-  
+
   this.convert = function(initNum, initUnit) {
     // const galToL = 3.78541;
     // const lbsToKg = 0.453592;
     // const miToKm = 1.60934;
     initUnit = initUnit.toLowerCase();
-    return initNum * units[initUnit][2];
+    return Number.parseFloat((initNum * units[initUnit][2]).toFixed(5));
   };
-  
+
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     return initNum + ' ' + this.spellOutUnit(initUnit) + ' converts to ' + Number.parseFloat(returnNum).toFixed(5) + ' ' + this.spellOutUnit(returnUnit);
   };
-  
+
 }
 
 module.exports = ConvertHandler;
