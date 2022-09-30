@@ -17,7 +17,7 @@ module.exports = function (app) {
 
   app.route('/api/convert').get(function (req, res) {
     if (req.query.input === undefined || req.query.input === '') {
-      return res.json({ error: 'input is required' });
+      return res.send('input is required');
     }
     
     var input = req.query.input;
@@ -26,7 +26,7 @@ module.exports = function (app) {
     
     var initNum = convertHandler.getNum(input);
     
-    if (initNum <= 0) {
+    if (initNum <= 0 || !Number.isFinite(initNum)) {
       errorText = 'invalid number';
     }
     
@@ -41,7 +41,7 @@ module.exports = function (app) {
     }
     
     if (errorText !== '') {
-      return res.json({ error: errorText });
+      return res.send(errorText);
     }
     
     var returnNum = convertHandler.convert(initNum, initUnit);

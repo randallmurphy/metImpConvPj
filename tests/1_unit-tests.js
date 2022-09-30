@@ -34,7 +34,7 @@ suite('Unit Tests', function() {
       done();
     });
     
-    test('Fractional Input w/ Decimal', function(done) {
+    test('Fractional Input with Decimal', function(done) {
       var input = '6/2.5L';
       assert.equal(convertHandler.getNum(input), 2.4);
       done();
@@ -42,11 +42,11 @@ suite('Unit Tests', function() {
     
     test('Invalid Input (double fraction)', function(done) {
       var input = '0/20/20L';
-      assert.approximately(convertHandler.getNum(input), 0, 0.1); //0.1 tolerance
+      assert.equal(convertHandler.getNum(input), undefined);
       done();
     });
     
-    test('No Numerical Input', function(done) {
+    test('No Numerical Input (default to 1)', function(done) {
       var input = 'L';
       assert.equal(convertHandler.getNum(input), 1);
       done();
@@ -60,6 +60,11 @@ suite('Unit Tests', function() {
       var input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
       input.forEach(function(ele) {
         ele = ele.toLowerCase();
+        
+        if (ele === 'l') {
+          ele = ele.toUpperCase();
+        }
+        
         assert.equal(ele, convertHandler.getUnit(ele));
       });
       done();
@@ -76,8 +81,8 @@ suite('Unit Tests', function() {
   suite('Function convertHandler.getReturnUnit(initUnit)', function() {
     
     test('For Each Valid Unit Inputs', function(done) {
-      var input = ['gal','l','mi','km','lbs','kg'];
-      var expect = ['l','gal','km','mi','kg','lbs'];
+      var input = ['gal','L','mi','km','lbs','kg'];
+      var expect = ['L','gal','km','mi','kg','lbs'];
       input.forEach(function(ele, i) {
         assert.equal(convertHandler.getReturnUnit(ele), expect[i]);
       });
@@ -90,7 +95,7 @@ suite('Unit Tests', function() {
     
     test('For Each Valid Unit Inputs', function(done) {
       //see above example for hint
-      var input = ['gal','l','mi','km','lbs','kg'];
+      var input = ['gal','L','mi','km','lbs','kg'];
       var expect = ['gallons','liters','miles','kilometers','pounds','kilograms'];
       input.forEach(function(ele, i) {
         assert.equal(convertHandler.spellOutUnit(ele), expect[i]);

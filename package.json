@@ -28,7 +28,8 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha ./tests/ --ui tdd"
   },
   "engines": {
     "node": "16.12.0"
