@@ -32,6 +32,6 @@
     "test": "mocha ./tests/ --ui tdd"
   },
   "engines": {
-    "node": "16.12.0"
+    "node": ">=16.12.0"
   }
 }
