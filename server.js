@@ -32,9 +32,9 @@ app.route('/')
 //For FCC testing purposes
 fccTestingRoutes(app);
 
-//Routing for API 
-apiRoutes(app);  
-    
+//Routing for API
+apiRoutes(app);
+
 //404 Not Found Middleware
 app.use(function(req, res, next) {
   res.status(404)
@@ -42,19 +42,17 @@ app.use(function(req, res, next) {
     .send('Not Found');
 });
 
-const port = process.env.PORT || 3000;
-
 //Start our server and tests!
-app.listen(port, function() {
-  console.log("Listening on port " + port);
+const listener = app.listen(process.env.PORT || 3000, function() {
+  console.log('Listening on port ' + listener.address().port);
   if(process.env.NODE_ENV==='test') {
     console.log('Running Tests...');
     setTimeout(function () {
       try {
         runner.run();
-      } catch(error) {
+      } catch(e) {
         console.log('Tests are not valid:');
-        console.log(error);
+        console.log(e);
       }
     }, 1500);
   }
