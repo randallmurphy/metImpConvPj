@@ -9,8 +9,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/public/bootstrap.min.css">
 	<link rel="stylesheet" href="/public/style.css">
-	<!-- Your web app is https, so your scripts need to be too -->
-	<script src="/public/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -75,25 +73,34 @@
 	</div>
 
 	<script>
-	$(function() {
-		$('#convertForm').submit(function(event) {
-			event.preventDefault();
-			$.ajax({
-				url: '/api/convert',
-				type: 'get',
-				data: $('#convertForm').serialize(),
-				success: function(data) {
-					let resultText = '';
+	document.addEventListener('DOMContentLoaded', (event) => {
+		document.querySelector('#convertForm').addEventListener('submit', (event2) => {
+			event2.preventDefault();
 
-					if (data.string !== undefined) {
-						resultText = data.string;
-					} else if (data.error !== undefined) {
-						resultText = 'error: ' + data.error;
-					}
-
-					$('#result').text(resultText);
-					$('#jsonResult').text(JSON.stringify(data));
+			fetch('/api/convert?input=' + document.querySelector('#convertField').value, {
+				'method': 'GET'
+			})
+			.then((response) => {
+				if (response['ok']) {
+					return response.json();
+				} else {
+					throw 'Error';
 				}
+			})
+			.then((data) => {
+				let resultText = '';
+
+				if (data['string'] !== undefined) {
+					resultText = data['string'];
+				} else if (data['error'] !== undefined) {
+					resultText = 'error: ' + data['error'];
+				}
+
+				document.querySelector('#result').textContent = resultText;
+				document.querySelector('#jsonResult').textContent = JSON.stringify(data);
+			})
+			.catch((error) => {
+				console.log(error);
 			});
 		});
 	});
