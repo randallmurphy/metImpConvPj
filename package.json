@@ -1,119 +1,48 @@
 {
-	
 	"name": "freecodecamp-project-metric-imperial-converter",
-	
 	"description": "freeCodeCamp - Information Security and Quality Assurance Project: Metric-Imperial Converter",
-	
 	"version": "1.0.0",
-	
 	"author": "murf",
-	
 	"keywords": [
-	
-		
-	"node",
-	
-		
-	"express",
-	
-		
-	"freecodecamp"
-	
+		"node",
+		"express",
+		"freecodecamp"
 	],
-	
 	"repository": {
-	
-		
-	"type": "git",
-	
-		
-	"url": "git+https://github.com/randallmurphy/metImpConvPj.git"
-	
+		"type": "git",
+		"url": "git+https://github.com/randallmurphy/metImpConvPj.git"
 	},
-	
 	"license": "MIT",
-	
 	"dependencies": {
-	
-		
-	"body-parser": "^1.20.3",
-	
-		
-	"chai": "^4.5.0",
-	
-		
-	"chai-http": "^4.4.0",
-	
-		
-	"cors": "^2.8.5",
-	
-		
-	"express": "^4.21.2",
-	
-		
-	"file-share": "^1.2.0",
-	
-		
-	"fs": "^0.0.1-security",
-	
-		
-	"helmet": "^5.1.1",
-	
-		
-	"mocha": "^10.8.2",
-	
-		
-	"morgan": "^1.10.0",
-	
-		
-	"nodemon": "^3.1.10",
-	
-		
-	"path": "^0.12.7",
-	
-		
-	"runner": "^4.0.1",
-	
-		
-	"server": "^1.0.41",
-	
-		
-	"zombie": "^6.1.4"
-	
+		"body-parser": "^1.20.3",
+		"chai": "^4.5.0",
+		"chai-http": "^4.4.0",
+		"cors": "^2.8.5",
+		"express": "^4.21.2",
+		"file-share": "^1.2.0",
+		"fs": "^0.0.1-security",
+		"helmet": "^5.1.1",
+		"mocha": "^10.8.2",
+		"morgan": "^1.10.0",
+		"nodemon": "^3.1.10",
+		"path": "^0.12.7",
+		"runner": "^4.0.1",
+		"server": "^1.0.41",
+		"zombie": "^6.1.4"
 	},
-	
 	"main": "server.js",
-	
 	"scripts": {
-	
-		
-	"start": "node server.js",
-	
-		
-	"test": "mocha ./tests/ --ui tdd"
-	
+		"start": "node server.js",
+		"test": "mocha ./tests/ --ui tdd"
 	},
-	
 	"engines": {
-	
-		
-	"node": ">=16.12.0"
-	
+		"node": ">=16.12.0"
 	},
-	
 	"directories": {
-	
-		
-	"test": "tests"
-	
+		"test": "tests"
 	},
-	
 	"bugs": {
-	
-		
-	"url": "https://github.com/randallmurphy/metImpConvPj/issues"
-	
+		"url": "https://github.com/randallmurphy/metImpConvPj/issues"
 	},
-	
 	"homepage": "https://github.com/randallmurphy/metImpConvPj#readme"
 }
