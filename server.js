@@ -10,6 +10,7 @@ var apiRoutes = require('./routes/api.js');
 var fccTestingRoutes = require('./routes/fcctesting.js');
 var runner = require('./test-runner');
 
+
 var app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -55,7 +56,7 @@ const listener = app.listen(process.env.PORT || 3000, function () {
 				console.log('Tests are not valid:');
 				console.log(e);
 			}
-		}, 1500);
+		}, 5000);
 	}
 });
 
